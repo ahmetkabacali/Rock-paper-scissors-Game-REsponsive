@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/media.css">
+
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container header-container">
+            <h1 class="heading">ROCK <br> PAPER <br> SCISSORS</h1>
+            <div class="score">
+                <div class="score-heading">SCORE</div>
+                <div class="score-count">0</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container main-container">
+            <div class="triangle-wrapper">
+                <img class="triangle" src="./src/images/bg-triangle.svg" alt="">
+            </div>
+            <div id="circleAll" class="grid">
+                <div class="circle circle-1">
+                    <div class="img-wrapper paper">
+                        <img class="paper" src="./src/images/icon-paper.svg" alt="paperIcon">
+                    </div>
+                </div>
+                <div class="circle circle-2">
+                    <div class="img-wrapper scissors">
+                        <img class="scissors" src="./src/images/icon-scissors.svg" alt="scissorsIcon">
+                    </div>
+                </div>
+                <div class="circle circle-3">
+                    <div class="img-wrapper rock">
+                        <img class="rock" src="./src/images/icon-rock.svg" alt="rockIcon">
+                    </div>
+                </div>
+            </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 class="rules-title">RULES</h2>
+                    <p class="rules-desc">Who reaches first 10 point wins!</p>
+                    <div class="modal-img-wrapper">
+                        <img src="./src/images/image-rules.svg" alt="rules">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <button type="button" id="myBtn" class="rules-btn">Rules</button>
+
+
+
+</body>
+<script src="./src/js/script.js"></script>
+<script src="./src/js/modal.js"></script>
+
+</html>

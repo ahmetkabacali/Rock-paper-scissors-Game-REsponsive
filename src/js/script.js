@@ -1,0 +1,143 @@
+const circleAll = document.getElementById("circleAll")
+const circle1 = document.querySelector(".circle-1")
+const circle2 = document.querySelector(".circle-2")
+const circleplaceholder = document.querySelector(".circle-placeholder")
+const circle3 = document.querySelector(".circle-3")
+const triangle = document.querySelector(".triangle")
+const scorecount = document.querySelector(".score-count")
+
+let score = 0;
+
+circleAll.addEventListener("click", (clicked) => {
+    let clickedCircle = clicked.target
+    const clickedControl = (!(
+        clickedCircle.matches(".scissors") ||
+        clickedCircle.matches(".rock") ||
+        clickedCircle.matches(".paper")
+    ))
+    if (clickedControl) return;
+
+    if (clickedCircle.classList.contains("paper")) {
+        let selected = "paper"
+        let selectedCircle = 1
+        step2(selected, selectedCircle)
+    }
+    if (clickedCircle.classList.contains("scissors")) {
+        let selected = "scissors"
+        let selectedCircle = 2
+        step2(selected, selectedCircle)
+    }
+    if (clickedCircle.classList.contains("rock")) {
+        let selected = "rock"
+        let selectedCircle = 3
+        step2(selected, selectedCircle)
+    }
+})
+
+function step2(selected, selectedCircle) {
+    document.querySelector("head").insertAdjacentHTML("beforeend", '<link rel="stylesheet" href="./src/css/selected.css">')
+    triangle.classList.add("hidden")
+    let newcircleALL =
+        `
+            <span class="picked-text">YOU PICKED</span>
+            <span class="house-picked-text">HOUSE PICKED</span>
+
+            <div class="circle circle-${selectedCircle} m_circle-${selectedCircle}">
+                <div class="img-wrapper ${selected}">
+                    <img class="${selected}" src="./src/images/icon-${selected}.svg" alt="${selected}Icon">
+                </div>
+            </div>
+        `
+    circleAll.innerHTML = newcircleALL
+    circleAll.insertAdjacentHTML("beforeend", '<div class="circle-placeholder"></div>')
+
+    setTimeout(() => {
+        circleAll.lastElementChild.remove()
+        let pcSelected;
+        const randomNum = Math.floor(Math.random() * 3) + 1
+        if (randomNum == 1) {
+            pcSelected = "paper"
+        } else if (randomNum == 2) {
+            pcSelected = "scissors"
+        } else if (randomNum == 3) {
+            pcSelected = "rock"
+        }
+
+        circleAll.insertAdjacentHTML("beforeend",
+            `
+            <div class="circle circle-${randomNum} m_circle-${randomNum}">
+                <div class="img-wrapper ${pcSelected}">
+                    <img class="${pcSelected}" src="./src/images/icon-${pcSelected}.svg" alt="${pcSelected}Icon">
+                </div>
+            </div>
+            `
+        )
+        circleAll.lastElementChild.style.gridColumn = "3 / span 1"
+
+        if (selectedCircle > randomNum || (selectedCircle == 1 && randomNum == 3)) {
+            score++
+            document.querySelector(`.circle-${selectedCircle}`).classList.add("winner")
+            document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+                `
+                <div class="play-box m_play-box">
+                    <p class="result">YOU WIN</p>
+                    <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                </div>
+                `
+            )
+        } else if (selectedCircle == randomNum) {
+            document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+                `
+                <div class="play-box m_play-box">
+                    <p class="result">DRAW</p>
+                    <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                </div>
+                `
+            )
+        } else {
+            document.querySelector(`.circle-${randomNum}`).classList.add("winner")
+            document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+                `
+                <div class="play-box m_play-box">
+                    <p class="result">YOU LOSE</p>
+                    <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                </div>
+                `
+            )
+            score--
+        }
+        for (const i in circleAll.children) {
+            if (Object.hasOwnProperty.call(circleAll.children, i)) {
+                const element = circleAll.children[i];
+                if (element.classList.contains("circle")) {
+                    element.style.pointerEvents = "none"
+                }
+            }
+        }
+        document.querySelector("#playAgain").addEventListener("click", () => {
+            document.querySelector('[href="./src/css/selected.css"]').remove()
+            let recircleALL =
+                `
+                <div class="circle circle-1">
+                    <div class="img-wrapper paper">
+                        <img class="paper" src="./src/images/icon-paper.svg" alt="paperIcon">
+                    </div>
+                </div>
+                <div class="circle circle-2">
+                    <div class="img-wrapper scissors">
+                        <img class="scissors" src="./src/images/icon-scissors.svg" alt="scissorsIcon">
+                    </div>
+                </div>
+                <div class="circle circle-3">
+                    <div class="img-wrapper rock">
+                        <img class="rock" src="./src/images/icon-rock.svg" alt="rockIcon">
+                    </div>
+                </div>
+            </div>
+        `
+            circleAll.innerHTML = recircleALL
+            circleAll.insertAdjacentHTML("beforeend", '<div class="circle-placeholder"></div>')
+        })
+        scorecount.innerHTML = score;
+    }, 0);
+}
