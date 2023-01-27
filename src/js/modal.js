@@ -1,7 +1,7 @@
 
 const modal = document.getElementById("myModal");
-const btn = document.getElementById("myBtn");
-const span = document.getElementsByClassName("close")[0];
+const btn = document.getElementById("rulesBtn");
+const span = document.getElementsByClassName("closeRules")[0];
 
 btn.onclick = function() {
   modal.style.display = "block";
@@ -14,3 +14,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+
+

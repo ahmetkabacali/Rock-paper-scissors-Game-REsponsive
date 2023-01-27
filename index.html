@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/images/favicon-32x32.png">
     <link rel="stylesheet" href="./src/css/main.css">
     <link rel="stylesheet" href="./src/css/media.css">
 
@@ -17,8 +17,14 @@
         <div class="container header-container">
             <h1 class="heading">ROCK <br> PAPER <br> SCISSORS</h1>
             <div class="score">
-                <div class="score-heading">SCORE</div>
-                <div class="score-count">0</div>
+                <div class="score-seperate">
+                    <div class="score-heading">You</div>
+                    <div class="score-count your-score">0</div>
+                </div>
+                <div class="score-seperate">
+                    <div class="score-heading">Com</div>
+                    <div class="score-count com-score">0</div>
+                </div>
             </div>
         </div>
     </header>
@@ -46,9 +52,9 @@
                 </div>
             </div>
 
-            <div id="myModal" class="modal">
+            <div id="myModal" class="modal modal-rules">
                 <div class="modal-content">
-                    <span class="close">&times;</span>
+                    <span class="close closeRules">&times;</span>
                     <h2 class="rules-title">RULES</h2>
                     <p class="rules-desc">Who reaches first 10 point wins!</p>
                     <div class="modal-img-wrapper">
@@ -56,10 +62,20 @@
                     </div>
                 </div>
             </div>
+            <div id="winnerModal" class="modal modal-winner">
+                <div class="modal-content">
+                    <span class="close closeWinner">&times;</span>
+                    <h2 class="rules-title">***LEROOO***</h2>
+                    <button class="winner-button" onclick=location.reload()>Play Again</button>
+                </div>
+            </div>
+
+
         </div>
 
     </main>
-    <button type="button" id="myBtn" class="rules-btn">Rules</button>
+    <button type="button" id="rulesBtn" class="rules-btn">Rules</button>
+
 
 
 

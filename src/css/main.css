@@ -61,10 +61,17 @@
  .score {
      background-color: aliceblue;
      color: #2a46c0;
-     padding: 1rem 2rem;
      border-radius: 0.5rem;
      text-align: center;
      width: 10rem;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+}
+.score-seperate{
+    padding: 0rem;
+}
+.score-seperate:first-child{
+    border-right: 1px solid #2a46c0;
 }
  .score-count {
      font-size: 4rem;
@@ -159,8 +166,13 @@
 /* */
 
 /* MODAL */
- .modal {
-     display: none;
+.modal-rules{
+    display: none;
+}
+.modal-winner{
+    display: none;
+}
+.modal {
      position: fixed;
      padding-top: 10%;
      left: 0;
@@ -173,7 +185,7 @@
      z-index: 5 !important;
 }
 .rules-desc{
-    font: 1rem;
+    font-size: 1rem;
     color: aliceblue;
 }
  .modal-content {
@@ -216,4 +228,12 @@
      color: #000;
      text-decoration: none;
      cursor: pointer;
+}
+#winnerModal button{
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: #b5cff2;
+    color: rgb(23, 49, 72);
+    cursor: pointer;
+    border-radius: 0.5rem;
 }
