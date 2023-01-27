@@ -75,13 +75,13 @@
     }
 
     .circle {
-        height: 130px;
-        width: 130px;
+        height: 130px!important;
+        width: 130px!important;
     }
 
     .img-wrapper {
-        height: 90px;
-        width: 90px;
+        height: 90px!important;
+        width: 90px!important;
     }
 
     .rules-btn {
