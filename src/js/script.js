@@ -76,10 +76,6 @@ function step2(selected, selectedCircle) {
         `
     )
     circleAll.lastElementChild.style.gridColumn = "3 / span 1"
-    console.log("SEN:", selectedCircle)
-    console.log("Bilgisayar:", randomNum)
-    console.log((selectedCircle == 1 && randomNum == 3))
-
     if ((selectedCircle == 1 && randomNum == 3) || (selectedCircle == 3 && randomNum == 1)) {
         if (selectedCircle == 1 && randomNum == 3) {
             yourscore++
@@ -145,7 +141,7 @@ function step2(selected, selectedCircle) {
             }
         }
     }
-    console.log(document.querySelector("#playAgain"))
+  
     document.querySelector("#playAgain").addEventListener("click", () => {
         document.querySelector('[href="./src/css/selected.css"]').remove()
         triangle.classList.remove("hidden")
