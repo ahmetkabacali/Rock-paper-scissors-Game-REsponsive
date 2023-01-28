@@ -3,10 +3,9 @@
     gap: 3rem 3rem;
 }
 .circle {
-    height: 270px;
-    width: 270px;
+    height: 14rem;
+    width: 14rem;
     z-index: -1!important;
-    transition: all 0.4s;
 }
 .circle.winner{
     box-shadow: 0px 0px 0px 5rem rgba(31,55,86,0.8), 0px 0px 0px 10rem rgba(31,55,86,0.6), 0px 0px 0px 15rem rgba(31,55,86,0.4);
@@ -21,8 +20,8 @@
     grid-area: 2 / 1 / span 1 / span 1;
 }
 .circle-placeholder {
-    height: 220px;
-    width: 220px;
+    height: 11rem;
+    width: 11rem;
     background-color: rgba(195, 196, 216, 0.7);
     border-radius: 50%;
     display: block;
@@ -38,8 +37,8 @@
     background-color: var(--ScissorsGradient1);
 }
 .img-wrapper {
-    height: 200px;
-    width: 200px;
+    height: 75%;
+    width: 75%;
 }
 .picked-text {
     font-size: 1.5rem;
@@ -70,9 +69,10 @@
     color: var(--DarkText);
     font-weight: bold;
     cursor: pointer!important;
+    font-size: 1.2rem;
 }
 .result{
     font-size: 2rem;
     color: aliceblue;
     margin-bottom: 1rem;
-}
+    text-shadow: 0 0 5px rgba(255,255,255,.2), 0 0 3px}

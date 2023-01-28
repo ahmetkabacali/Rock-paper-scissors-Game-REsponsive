@@ -6,6 +6,7 @@ const circle3 = document.querySelector(".circle-3")
 const triangle = document.querySelector(".triangle")
 const yourScoreDisp = document.querySelector(".your-score")
 const comScoreDisp = document.querySelector(".com-score")
+const winnertitle = document.querySelector(".winner-title")
 
 let yourscore = 0;
 let comscore = 0;
@@ -15,7 +16,8 @@ circleAll.addEventListener("click", (clicked) => {
     const clickedControl = (!(
         clickedCircle.matches(".scissors") ||
         clickedCircle.matches(".rock") ||
-        clickedCircle.matches(".paper")
+        clickedCircle.matches(".paper") ||
+        clickedCircle.matches(".circle")
     ))
     if (clickedControl) return;
 
@@ -80,8 +82,8 @@ function step2(selected, selectedCircle) {
         document.querySelector(`.circle-${selectedCircle}`).classList.add("winner")
         document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
             `
-            <div class="play-box m_play-box">
-                <p class="result">YOU WIN</p>
+            <div class="play-box m_play-box" >
+                <p class="result" style="color:green">YOU WIN</p>
                 <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
             </div>
             `
@@ -89,8 +91,8 @@ function step2(selected, selectedCircle) {
     } else if (selectedCircle == randomNum) {
         document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
             `
-            <div class="play-box m_play-box">
-                <p class="result">DRAW</p>
+            <div class="play-box m_play-box" >
+                <p class="result" style="color:yellow">DRAW</p>
                 <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
             </div>
             `
@@ -100,8 +102,8 @@ function step2(selected, selectedCircle) {
         document.querySelector(`.circle-${randomNum}`).classList.add("winner")
         document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
             `
-            <div class="play-box m_play-box">
-                <p class="result">YOU LOSE</p>
+            <div class="play-box m_play-box" >
+                <p class="result" style="color:red">YOU LOSE</p>
                 <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
             </div>
             `
@@ -118,6 +120,8 @@ function step2(selected, selectedCircle) {
     }
     document.querySelector("#playAgain").addEventListener("click", () => {
         document.querySelector('[href="./src/css/selected.css"]').remove()
+        triangle.classList.remove("hidden")
+
         let recircleALL =
             `
             <div class="circle circle-1">
@@ -142,27 +146,22 @@ function step2(selected, selectedCircle) {
     })
     yourScoreDisp.innerHTML = yourscore;
     comScoreDisp.innerHTML = comscore;
-    if (yourscore == 2) {
-        winner()
-        yourscore=0
-    } else if (comscore == 2) {
-        winner()
-        comscore=0
-
+    if (yourscore == 10) {
+        winnerModal.style.display = "block";
+        comscore = 0
+        yourscore = 0
+    } else if (comscore == 10) {
+        winnerModal.style.display = "block";
+        comscore = 0
+        comscore = 0
     }
 }
 
 const winnerModal = document.getElementById("winnerModal");
 const winnerClose = document.getElementsByClassName("closeWinner")[0];
 
-function winner() {
-    winnerModal.style.display = "block";
-}
+
 winnerClose.onclick = function () {
     winnerModal.style.display = "none";
 }
-window.onclick = function (event) {
-    if (event.target == winnerModal) {
-        winnerModal.style.display = "none";
-    }
-}
+
