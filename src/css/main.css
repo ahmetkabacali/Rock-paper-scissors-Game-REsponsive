@@ -111,8 +111,8 @@
 }
  .circle {
      border-radius: 50%;
-     height: 15rem;
-     width: 15rem;
+     height: 11rem;
+     width: 11rem;
      display: grid;
      place-items: center;
      align-self: center;
