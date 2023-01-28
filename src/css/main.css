@@ -52,21 +52,21 @@ body {
 
 /* header */
 header {
-    width: 80%;
+    width: 60%;
     min-width: 566px;
 }
 
 .header-container {
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 2rem;
     border-radius: 1rem;
-    border: 2px solid var(--HeaderOutline);
+    border: 5px solid hsl(217, 16%, 45%, 70%)
 }
 
 .heading {
     color: white;
-    line-height: 2rem;
-    font-size: 2.6rem;
+    line-height: 2.4rem;
+    font-size: 3rem;
 }
 
 .score {
@@ -102,7 +102,7 @@ header {
 }
 
 .triangle-wrapper {
-    padding: 3rem;
+    padding: 5rem;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -129,8 +129,8 @@ header {
 
 .circle {
     border-radius: 50%;
-    height: 10.5rem;
-    width: 10.5rem;
+    height: 15rem;
+    width: 15rem;
     display: grid;
     place-items: center;
     align-self: center;
@@ -171,6 +171,7 @@ header {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    box-shadow: 0px -9px 0px 0px rgba(225, 232, 243, 0.802);
 }
 
 .rules-wrapper {
@@ -288,4 +289,9 @@ header {
     color: rgb(23, 49, 72);
     cursor: pointer;
     border-radius: 0.5rem;
+}
+.winner-score-modal{
+    font-size: 1.5rem;
+    padding: 1rem;
+    transition: 0.3rem;
 }

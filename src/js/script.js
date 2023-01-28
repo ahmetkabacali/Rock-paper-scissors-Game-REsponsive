@@ -76,18 +76,34 @@ function step2(selected, selectedCircle) {
         `
     )
     circleAll.lastElementChild.style.gridColumn = "3 / span 1"
+    console.log("SEN:", selectedCircle)
+    console.log("Bilgisayar:", randomNum)
+    console.log((selectedCircle == 1 && randomNum == 3))
 
-    if (selectedCircle > randomNum || (selectedCircle == 1 && randomNum == 3)) {
-        yourscore++
-        document.querySelector(`.circle-${selectedCircle}`).classList.add("winner")
-        document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
-            `
-            <div class="play-box m_play-box" >
-                <p class="result" style="color:green">YOU WIN</p>
-                <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
-            </div>
-            `
-        )
+    if ((selectedCircle == 1 && randomNum == 3) || (selectedCircle == 3 && randomNum == 1)) {
+        if (selectedCircle == 1 && randomNum == 3) {
+            yourscore++
+            document.querySelector(`.circle-${selectedCircle}`).classList.add("winner")
+            document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+                `
+                    <div class="play-box m_play-box" >
+                        <p class="result" style="color:green">YOU WIN</p>
+                        <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                    </div>
+                    `
+            )
+        } else {
+            comscore++
+            document.querySelector(`.circle-${randomNum}`).classList.add("winner")
+            document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+                `
+                <div class="play-box m_play-box" >
+                    <p class="result" style="color:red">YOU LOSE</p>
+                    <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                </div>
+                `
+            )
+        }
     } else if (selectedCircle == randomNum) {
         document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
             `
@@ -97,7 +113,7 @@ function step2(selected, selectedCircle) {
             </div>
             `
         )
-    } else {
+    } else if (selectedCircle < randomNum) {
         comscore++
         document.querySelector(`.circle-${randomNum}`).classList.add("winner")
         document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
@@ -108,8 +124,19 @@ function step2(selected, selectedCircle) {
             </div>
             `
         )
-
+    } else if (selectedCircle > randomNum) {
+        yourscore++
+        document.querySelector(`.circle-${selectedCircle}`).classList.add("winner")
+        document.querySelector(`.circle-${selectedCircle}`).insertAdjacentHTML("afterend",
+            `
+                <div class="play-box m_play-box" >
+                    <p class="result" style="color:green">YOU WIN</p>
+                    <button id="playAgain" class="play-again-btn">PLAY AGAIN</button>
+                </div>
+                `
+        )
     }
+
     for (const i in circleAll.children) {
         if (Object.hasOwnProperty.call(circleAll.children, i)) {
             const element = circleAll.children[i];
@@ -118,6 +145,7 @@ function step2(selected, selectedCircle) {
             }
         }
     }
+    console.log(document.querySelector("#playAgain"))
     document.querySelector("#playAgain").addEventListener("click", () => {
         document.querySelector('[href="./src/css/selected.css"]').remove()
         triangle.classList.remove("hidden")
@@ -148,12 +176,38 @@ function step2(selected, selectedCircle) {
     comScoreDisp.innerHTML = comscore;
     if (yourscore == 10) {
         winnerModal.style.display = "block";
-        comscore = 0
-        yourscore = 0
+        winnertitle.innerText = "*** YOU WIN ***"
+        winnertitle.insertAdjacentHTML("beforeend",
+        `
+            <div class="winner-score-modal">
+            <div class="your-score-wrapper">
+                <span class="y-score">Your Score: ${yourscore}</span>
+            </div>
+            <div class="Com-score-wrapper">
+                <span class="c-score">Your Score: ${comscore}</span>
+            </div>
+        
+        `)
+        comscore = 0;
+        yourscore = 0;
     } else if (comscore == 10) {
         winnerModal.style.display = "block";
-        comscore = 0
-        comscore = 0
+        winnertitle.innerText = "*** YOU LOSE ***"
+        winnertitle.insertAdjacentHTML("beforeend",
+        `
+            <div class="winner-score-modal">
+            <div class="your-score-wrapper">
+                <span class="y-score">Your Score: ${yourscore}</span>
+            </div>
+            <div class="Com-score-wrapper">
+                <span class="c-score">Your Score: ${comscore}</span>
+            </div>
+        
+        `)
+
+        comscore = 0;
+        yourscore = 0;
+
     }
 }
 
